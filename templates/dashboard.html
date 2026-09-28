@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | PocketSmart AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            font-size: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #6b7280;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .button.secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .account {
+            margin-top: 20px;
+        }
+
+        .account-info {
+            line-height: 1.8;
+        }
+
+        .account-info strong {
+            color: #111827;
+        }
+
+        .logout {
+            margin-top: 20px;
+            background: #dc2626;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eff6ff;
+            color: #1e40af;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .welcome h1 {
+                font-size: 27px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <h2>🏠 PocketSmart AI</h2>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a
+            href="#"
+            onclick="logout()"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome, <span id="username">User</span> 👋
+        </h1>
+
+        <p>
+            Plan your home budget smarter with AI.
+        </p>
+
+    </div>
+
+
+    <div class="card-grid">
+
+
+        <!-- Home Budget -->
+
+        <div class="card">
+
+            <h2>
+                🏠 Home Budget Planner
+            </h2>
+
+            <p>
+                Enter your home details, budget,
+                interior style and requirements.
+                PocketSmart AI will create a practical
+                budget allocation for you.
+            </p>
+
+            <a
+                href="/home-planner"
+                class="button"
+            >
+                Create Budget Plan
+            </a>
+
+        </div>
+
+
+        <!-- History -->
+
+        <div class="card">
+
+            <h2>
+                📜 Budget History
+            </h2>
+
+            <p>
+                View your previously generated
+                home budget plans and compare
+                your planning decisions.
+            </p>
+
+            <a
+                href="/history"
+                class="button secondary"
+            >
+                View History
+            </a>
+
+        </div>
+
+
+        <!-- AI Information -->
+
+        <div class="card">
+
+            <h2>
+                🤖 PocketSmart AI
+            </h2>
+
+            <p>
+                Your AI-powered home budget
+                planning assistant. Get estimated
+                allocations based on your budget
+                and requirements.
+            </p>
+
+            <div class="status">
+                AI Home Budget Planning is active.
+            </div>
+
+        </div>
+
+
+        <!-- Account -->
+
+        <div class="card account">
+
+            <h2>
+                👤 My Account
+            </h2>
+
+            <div class="account-info">
+
+                <p>
+                    <strong>Username:</strong>
+                    <span id="accountUsername">
+                        Loading...
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <span id="accountEmail">
+                        Loading...
+                    </span>
+                </p>
+
+            </div>
+
+            <button
+                class="button logout"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const token =
+        localStorage.getItem("access_token");
+
+
+    function logout() {
+
+        localStorage.removeItem(
+            "access_token"
+        );
+
+        localStorage.removeItem(
+            "username"
+        );
+
+        localStorage.removeItem(
+            "latest_recommendation_id"
+        );
+
+        window.location.href =
+            "/login";
+    }
+
+
+    async function loadUser() {
+
+        if (!token) {
+
+            window.location.href =
+                "/login";
+
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                "/auth/me",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                logout();
+
+                return;
+            }
+
+
+            document.getElementById(
+                "username"
+            ).textContent =
+                data.username;
+
+
+            document.getElementById(
+                "accountUsername"
+            ).textContent =
+                data.username;
+
+
+            document.getElementById(
+                "accountEmail"
+            ).textContent =
+                data.email;
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            logout();
+
+        }
+
+    }
+
+
+    loadUser();
+
+</script>
+
+</body>
+
+</html>

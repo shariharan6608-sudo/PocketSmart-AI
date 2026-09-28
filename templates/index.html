@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PocketSmart AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .features {
+            padding: 60px 8%;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.5;
+            color: #6b7280;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #111827;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/docs">API Docs</a>
+        </div>
+    </nav>
+
+
+    <section class="hero">
+
+        <h1>
+            PocketSmart AI
+        </h1>
+
+        <p>
+            Your Smart Budget &
+            Recommendation Assistant
+        </p>
+
+        <p>
+            Plan your budget and get
+            AI-powered recommendations
+            based on your needs.
+        </p>
+
+        <a
+            href="/docs"
+            class="button"
+        >
+            Explore AI Assistant
+        </a>
+
+    </section>
+
+
+    <section class="features">
+
+        <h2>
+            What PocketSmart AI Offers
+        </h2>
+
+        <div class="feature-grid">
+
+            <div class="card">
+                <h3>
+                    🏠 Home Budget
+                </h3>
+
+                <p>
+                    Plan your home interior
+                    budget and receive AI-based
+                    recommendations.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>
+                    🎉 Party Budget
+                </h3>
+
+                <p>
+                    Plan your party expenses
+                    and get recommendations
+                    based on your budget.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>
+                    💎 Jewelry Budget
+                </h3>
+
+                <p>
+                    Plan your jewelry purchase
+                    according to your budget
+                    and preferences.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>
+                    🤖 AI Recommendations
+                </h3>
+
+                <p>
+                    Get personalized suggestions
+                    generated using Gemini AI.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>
+            © 2026 PocketSmart AI
+        </p>
+    </footer>
+
+</body>
+</html>

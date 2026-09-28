@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Budget Planner | PocketSmart AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            font-size: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .header h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <h2>🏠 PocketSmart AI</h2>
+
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="header">
+        <h1>🏠 Home Budget Planner</h1>
+
+        <p>
+            Enter your home requirements and let PocketSmart AI
+            create a practical budget plan.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <form id="budgetForm">
+
+            <!-- Budget -->
+            <div class="form-group">
+
+                <label for="budget">
+                    💰 Total Budget
+                </label>
+
+                <input
+                    type="number"
+                    id="budget"
+                    placeholder="Example: 500000"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Home Type -->
+            <div class="form-group">
+
+                <label for="homeType">
+                    🏠 Home Type
+                </label>
+
+                <select id="homeType" required>
+
+                    <option value="">
+                        Select home type
+                    </option>
+
+                    <option value="1BHK">
+                        1 BHK
+                    </option>
+
+                    <option value="2BHK">
+                        2 BHK
+                    </option>
+
+                    <option value="3BHK">
+                        3 BHK
+                    </option>
+
+                    <option value="4BHK">
+                        4 BHK
+                    </option>
+
+                    <option value="Independent House">
+                        Independent House
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Interior Style -->
+            <div class="form-group">
+
+                <label for="style">
+                    🎨 Interior Style
+                </label>
+
+                <select id="style" required>
+
+                    <option value="">
+                        Select interior style
+                    </option>
+
+                    <option value="Modern">
+                        Modern
+                    </option>
+
+                    <option value="Minimalist">
+                        Minimalist
+                    </option>
+
+                    <option value="Traditional">
+                        Traditional
+                    </option>
+
+                    <option value="Luxury">
+                        Luxury
+                    </option>
+
+                    <option value="Contemporary">
+                        Contemporary
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Areas -->
+            <div class="form-group">
+
+                <label for="areas">
+                    🛋️ Rooms / Areas
+                </label>
+
+                <input
+                    type="text"
+                    id="areas"
+                    placeholder="Example: Living room, bedroom, kitchen"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Requirements -->
+            <div class="form-group">
+
+                <label for="requirements">
+                    📝 Additional Requirements
+                </label>
+
+                <textarea
+                    id="requirements"
+                    placeholder="Example: Need modular kitchen, wardrobe, false ceiling, LED lighting..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="button"
+                id="submitButton"
+            >
+                🤖 Generate AI Budget Plan
+            </button>
+
+        </form>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <a
+            href="/dashboard"
+            class="back"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const form = document.getElementById("budgetForm");
+
+    const message = document.getElementById("message");
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+
+        message.style.display = "block";
+    }
+
+
+    form.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const token =
+            localStorage.getItem("access_token");
+
+
+        if (!token) {
+
+            window.location.href = "/login";
+
+            return;
+        }
+
+
+        const budget =
+            document.getElementById("budget").value;
+
+        const homeType =
+            document.getElementById("homeType").value;
+
+        const style =
+            document.getElementById("style").value;
+
+        const areas =
+            document.getElementById("areas").value;
+
+        const requirements =
+            document.getElementById("requirements").value;
+
+
+        const preferences = `
+Home Type: ${homeType}
+
+Interior Style: ${style}
+
+Rooms / Areas: ${areas}
+
+Additional Requirements:
+${requirements}
+        `;
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "⏳ Creating your budget plan...";
+
+
+        showMessage(
+            "PocketSmart AI is preparing your home budget plan...",
+            "info"
+        );
+
+
+        try {
+
+            const response = await fetch(
+                "/recommendations/generate",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " + token
+                    },
+
+                    body: JSON.stringify({
+
+                        category:
+                            "Home Budget",
+
+                        budget:
+                            "₹" + budget,
+
+                        preferences:
+                            preferences
+
+                    })
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (response.status === 401) {
+
+                localStorage.removeItem(
+                    "access_token"
+                );
+
+                localStorage.removeItem(
+                    "username"
+                );
+
+                window.location.href =
+                    "/login";
+
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                showMessage(
+                    data.detail ||
+                    "Something went wrong. Please try again.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (
+                data.recommendation ===
+                "AI_LIMIT_REACHED"
+            ) {
+
+                showMessage(
+                    "Gemini AI daily limit has been reached. Your planner is working, but AI generation is temporarily unavailable. Please try again later.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "latest_recommendation_id",
+                data.recommendation_id
+            );
+
+
+            showMessage(
+                "✅ Budget plan generated successfully! Opening your recommendation...",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "/home-recommendations";
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to connect to the server. Make sure the FastAPI server is running.",
+                "error"
+            );
+
+        } finally {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "🤖 Generate AI Budget Plan";
+
+        }
+
+    });
+
+
+    function logout() {
+
+        localStorage.removeItem(
+            "access_token"
+        );
+
+        localStorage.removeItem(
+            "username"
+        );
+
+        localStorage.removeItem(
+            "latest_recommendation_id"
+        );
+
+        window.location.href =
+            "/login";
+    }
+
+</script>
+
+</body>
+</html>
